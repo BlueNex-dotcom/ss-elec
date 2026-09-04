@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.voltline.co.uk/sitemap.xml
