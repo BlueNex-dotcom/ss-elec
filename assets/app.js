@@ -66,25 +66,25 @@
   }
 
   /* ---------------- shared chrome ---------------- */
-  const navLinks = [["/services.html","Services"],["/about.html","Why us"],["/our-work.html","Our work"],["/reviews.html","Reviews"],["/areas.html","Areas"],["/contact.html","Contact"]];
+  const navLinks = [["services.html","Services"],["about.html","Why us"],["our-work.html","Our work"],["reviews.html","Reviews"],["areas.html","Areas"],["contact.html","Contact"]];
   function header() {
     return `<div class="topbar"><div class="wrap">
       <span class="stars">★★★★★</span> <span><b>${esc(S.rating)}</b>/5 from <b>${esc(S.reviewCount)}</b> reviews</span>
       <span class="sep hide-sm"></span><span class="hide-sm">NICEIC Approved &amp; Part P Registered</span>
       <span class="tb-right"><span class="hide-sm">Need us today?</span> <a href="${tel}">${esc(S.phone)}</a></span></div></div>
     <header><div class="wrap nav">
-      <a href="/" class="brand"><span class="mark" aria-hidden="true">${svg('bolt',true)}</span><span>${esc(S.name)}<small>${esc(S.areaShort)}</small></span></a>
+      <a href="index.html" class="brand"><span class="mark" aria-hidden="true">${svg('bolt',true)}</span><span>${esc(S.name)}<small>${esc(S.areaShort)}</small></span></a>
       <nav>${navLinks.map(([h,l])=>`<a href="${h}">${l}</a>`).join('')}</nav>
       <span class="spacer"></span>
       <a class="btn btn-accent" href="${tel}">${phoneSvg}<span class="hdr-cta-text">${esc(S.phone)}</span></a>
     </div></header>`;
   }
   function footer() {
-    const svcs = (S.services||[]).map(s=>`<a href="/${s.slug}.html">${esc(s.name)}</a>`).join('');
-    const areas = (S.locations||[]).slice(0,6).map(l=>`<a href="/electrician-in-${l.slug}.html">${esc(l.name)}</a>`).join('');
+    const svcs = (S.services||[]).map(s=>`<a href="${s.slug}.html">${esc(s.name)}</a>`).join('');
+    const areas = (S.locations||[]).slice(0,6).map(l=>`<a href="electrician-in-${l.slug}.html">${esc(l.name)}</a>`).join('');
     return `<footer><div class="wrap">
       <div class="foot-grid">
-        <div><a href="/" class="brand"><span class="mark" aria-hidden="true">${svg('bolt',true)}</span><span>${esc(S.name)}<small>${esc(S.areaShort)}</small></span></a>
+        <div><a href="index.html" class="brand"><span class="mark" aria-hidden="true">${svg('bolt',true)}</span><span>${esc(S.name)}<small>${esc(S.areaShort)}</small></span></a>
           <p>Certified domestic &amp; commercial electricians covering ${esc(S.area)}. Fully insured, Part P registered, 18th Edition qualified.</p></div>
         <div class="foot-col"><h5>Services</h5>${svcs}</div>
         <div class="foot-col"><h5>Areas</h5>${areas}</div>
@@ -96,7 +96,7 @@
     </div></footer>`;
   }
   function callbar() {
-    return `<div class="callbar"><a class="btn btn-accent" href="${tel}">${phoneSvg}Call now</a><a class="btn btn-brand" href="/contact.html">Free quote</a></div>`;
+    return `<div class="callbar"><a class="btn btn-accent" href="${tel}">${phoneSvg}Call now</a><a class="btn btn-brand" href="contact.html">Free quote</a></div>`;
   }
 
   /* ---------------- shared blocks ---------------- */
@@ -105,7 +105,7 @@
       <h2>${title||'Need an electrician you can trust?'}</h2>
       <p>${text||'Call now for honest advice and a fast, fixed-price quote. No call-out fee.'}</p>
       <div class="row"><a class="btn btn-accent" href="${tel}">${phoneSvg}Call ${esc(S.phone)}</a>
-      <a class="btn btn-outline" href="/contact.html">Request a call-back${arrowSvg}</a></div></div></section>`;
+      <a class="btn btn-outline" href="contact.html">Request a call-back${arrowSvg}</a></div></div></section>`;
   }
   function leadForm() {
     return `<form class="lead reveal" id="leadForm" novalidate>
@@ -140,7 +140,7 @@
         <div class="h-badges"><span class="chip emg"><span class="d"></span>24/7 Emergency call-out</span><span class="chip"><span class="d"></span>No call-out fee</span></div>
         <h1 class="hero-h">Your local electrician for a <em>safe, sorted</em> home.</h1>
         <p class="hero-sub">Fuse-board upgrades, rewires, EV chargers and emergency repairs across <b>${esc(S.area)}</b>. On time, fixed price, and fully certified.</p>
-        <div class="hero-cta"><a class="btn btn-accent" href="${tel}">${phoneSvg}Call ${esc(S.phone)}</a><a class="btn btn-outline" href="/contact.html">Get a free quote${arrowSvg}</a></div>
+        <div class="hero-cta"><a class="btn btn-accent" href="${tel}">${phoneSvg}Call ${esc(S.phone)}</a><a class="btn btn-outline" href="contact.html">Get a free quote${arrowSvg}</a></div>
         <div class="hero-trust"><div class="t">${ico(ICONS.check,false)}<b>Same-day</b>&nbsp;emergencies</div><div class="t">${ico(ICONS.check,false)}<b>12-month</b>&nbsp;guarantee</div><div class="t">${ico(ICONS.check,false)}<b>£5m</b>&nbsp;insured</div></div>
       </div>
       <div class="hero-art reveal"><div class="frame">${consumerUnit('new')}</div>
@@ -150,7 +150,7 @@
     </div></section>
     <div class="accred"><div class="wrap"><span class="lab">Approved &amp; accredited by</span><div class="logos">${(S.accreditations||[]).map(([i,a,b])=>`<span class="acc">${svg(i)}<span>${esc(a)}<small>${esc(b)}</small></span></span>`).join('')}</div></div></div>
     <section class="sec wrap"><div class="sec-head reveal"><span class="eyebrow">Our services</span><h2>Every electrical job, one trusted team</h2><p>From a flickering light to a full rewire. Domestic, commercial and landlord work, all to the 18th Edition.</p></div>
-      <div class="svc-grid">${(S.services||[]).map(s=>`<a class="svc ${s.hot?'hot':''}" href="/${s.slug}.html">${s.badge?`<span class="badge">${esc(s.badge)}</span>`:''}<div class="ico">${svg(s.icon)}</div><h3>${esc(s.name)}</h3><p>${esc(s.lede)}</p><span class="link">Learn more ${arrowSvg}</span></a>`).join('')}</div></section>
+      <div class="svc-grid">${(S.services||[]).map(s=>`<a class="svc ${s.hot?'hot':''}" href="${s.slug}.html">${s.badge?`<span class="badge">${esc(s.badge)}</span>`:''}<div class="ico">${svg(s.icon)}</div><h3>${esc(s.name)}</h3><p>${esc(s.lede)}</p><span class="link">Learn more ${arrowSvg}</span></a>`).join('')}</div></section>
     <section class="why"><div class="sec wrap why-grid">
       <div class="photo reveal" style="aspect-ratio:4/5">${photoSlot(S.images&&S.images.about,'Your team / van photo','camera')}</div>
       <div class="reveal"><span class="eyebrow">Why choose us</span><h2 style="font-size:clamp(28px,3.8vw,40px);margin-top:16px">Local electricians you can rely on</h2>
@@ -177,7 +177,7 @@
     return `<section class="areas" id="areas"><div class="sec wrap area-grid">
       <div class="reveal"><span class="eyebrow">Where we work</span><h2 style="font-size:clamp(28px,3.8vw,40px);margin-top:16px">Proudly covering <span style="color:var(--brand-600)">${esc(S.areaShort)}</span> &amp; nearby</h2>
         <p style="color:var(--muted);margin-top:16px;font-size:17px">Fast, local response across the region. Not sure if we cover you? Give us a call, we probably do.</p>
-        <div class="area-list">${(S.locations||[]).map(l=>`<a href="/electrician-in-${l.slug}.html"><span>${svg('pin')}${esc(l.name)}</span></a>`).join('')}</div></div>
+        <div class="area-list">${(S.locations||[]).map(l=>`<a href="electrician-in-${l.slug}.html"><span>${svg('pin')}${esc(l.name)}</span></a>`).join('')}</div></div>
       <div class="mapbox reveal">${mapEl()}</div></div></section>`;
   }
   function contactSection() {
@@ -193,9 +193,9 @@
     if (!s) return `<section class="sec wrap"><h1>Service not found</h1></section>`;
     return `
     <section class="page-hero"><div class="wrap">
-      <div class="crumbs"><a href="/">Home</a>${arrowSvg}<a href="/services.html">Services</a>${arrowSvg}<span>${esc(s.name)}</span></div>
+      <div class="crumbs"><a href="index.html">Home</a>${arrowSvg}<a href="services.html">Services</a>${arrowSvg}<span>${esc(s.name)}</span></div>
       <h1>${esc(s.h1)}</h1><p class="lede">${esc(s.lede)}</p>
-      <div class="hero-cta"><a class="btn btn-accent" href="${tel}">${phoneSvg}Call ${esc(S.phone)}</a><a class="btn btn-outline" href="/contact.html">Get a quote${arrowSvg}</a></div>
+      <div class="hero-cta"><a class="btn btn-accent" href="${tel}">${phoneSvg}Call ${esc(S.phone)}</a><a class="btn btn-outline" href="contact.html">Get a quote${arrowSvg}</a></div>
     </div></section>
     <section class="sec wrap"><div class="two-col">
       <div class="prose reveal">
@@ -205,7 +205,7 @@
       </div>
       <aside class="aside reveal">
         <div class="card quote"><h4>Free, fixed-price quote</h4><div class="big">${esc(S.phone)}</div><p>Call now or request a call-back. No call-out fee.</p><a class="btn btn-accent" href="${tel}">${phoneSvg}Call now</a></div>
-        <div class="card"><h4>Why ${esc(S.name)}?</h4><ul class="prose" style="margin-top:6px">${(S.guarantees||[]).slice(0,3).map(g=>`<li>${esc(g.title)}</li>`).join('')}</ul><a class="btn btn-outline" href="/contact.html" style="margin-top:8px">Request a call-back</a></div>
+        <div class="card"><h4>Why ${esc(S.name)}?</h4><ul class="prose" style="margin-top:6px">${(S.guarantees||[]).slice(0,3).map(g=>`<li>${esc(g.title)}</li>`).join('')}</ul><a class="btn btn-outline" href="contact.html" style="margin-top:8px">Request a call-back</a></div>
       </aside>
     </div></section>
     ${otherServices(key)}
@@ -215,7 +215,7 @@
   function otherServices(exclude) {
     const list = (S.services||[]).filter(s => s.slug !== exclude).slice(0,3);
     return `<section class="sec wrap"><div class="sec-head reveal"><span class="eyebrow">More services</span><h2>We also help with</h2></div>
-      <div class="tiles">${list.map(s=>`<a class="tile" href="/${s.slug}.html"><div class="ico">${svg(s.icon)}</div><h3>${esc(s.name)}</h3><p>${esc(s.lede)}</p><span class="link">Learn more ${arrowSvg}</span></a>`).join('')}</div></section>`;
+      <div class="tiles">${list.map(s=>`<a class="tile" href="${s.slug}.html"><div class="ico">${svg(s.icon)}</div><h3>${esc(s.name)}</h3><p>${esc(s.lede)}</p><span class="link">Learn more ${arrowSvg}</span></a>`).join('')}</div></section>`;
   }
 
   /* ---------------- page: LOCATION ---------------- */
@@ -225,22 +225,22 @@
     const n = l.name;
     return `
     <section class="page-hero"><div class="wrap">
-      <div class="crumbs"><a href="/">Home</a>${arrowSvg}<a href="/areas.html">Areas</a>${arrowSvg}<span>${esc(n)}</span></div>
+      <div class="crumbs"><a href="index.html">Home</a>${arrowSvg}<a href="areas.html">Areas</a>${arrowSvg}<span>${esc(n)}</span></div>
       <h1>Electrician in ${esc(n)}</h1><p class="lede">${esc(S.name)} is your local, fully certified electrician in ${esc(n)}. Fuse boards, rewires, EV chargers, EICRs and 24/7 emergency call-out, on time and fixed price.</p>
-      <div class="hero-cta"><a class="btn btn-accent" href="${tel}">${phoneSvg}Call ${esc(S.phone)}</a><a class="btn btn-outline" href="/contact.html">Get a quote${arrowSvg}</a></div>
+      <div class="hero-cta"><a class="btn btn-accent" href="${tel}">${phoneSvg}Call ${esc(S.phone)}</a><a class="btn btn-outline" href="contact.html">Get a quote${arrowSvg}</a></div>
     </div></section>
     <section class="sec wrap"><div class="two-col">
       <div class="prose reveal">
         <p class="lead">Looking for a reliable electrician in ${esc(n)}? We're a local, NICEIC-approved team covering ${esc(n)} and the surrounding area, trusted by ${esc(S.reviewCount)}+ homes and businesses with a ${esc(S.rating)}-star rating.</p>
         <p>Whether it's an emergency call-out, a fuse board that keeps tripping, a full rewire or a new EV charger, we turn up when we say, agree a fixed price before we start, and leave every job tested and certified.</p>
         <h2>Electrical services in ${esc(n)}</h2>
-        <ul>${(S.services||[]).map(s=>`<li><a href="/${s.slug}.html" style="color:var(--brand-600);font-weight:600">${esc(s.name)}</a></li>`).join('')}</ul>
+        <ul>${(S.services||[]).map(s=>`<li><a href="${s.slug}.html" style="color:var(--brand-600);font-weight:600">${esc(s.name)}</a></li>`).join('')}</ul>
         <h2>Why ${esc(n)} chooses us</h2>
         <ul>${(S.guarantees||[]).map(g=>`<li>${esc(g.title)}: ${esc(g.desc)}</li>`).join('')}</ul>
       </div>
       <aside class="aside reveal">
         <div class="card quote"><h4>Local electrician in ${esc(n)}</h4><div class="big">${esc(S.phone)}</div><p>Fast response across ${esc(n)}. Call or request a call-back.</p><a class="btn btn-accent" href="${tel}">${phoneSvg}Call now</a></div>
-        <div class="card"><h4>Also covering</h4><div class="area-list" style="margin-top:6px">${(S.locations||[]).filter(x=>x.slug!==key).slice(0,6).map(x=>`<a href="/electrician-in-${x.slug}.html"><span>${svg('pin')}${esc(x.name)}</span></a>`).join('')}</div></div>
+        <div class="card"><h4>Also covering</h4><div class="area-list" style="margin-top:6px">${(S.locations||[]).filter(x=>x.slug!==key).slice(0,6).map(x=>`<a href="electrician-in-${x.slug}.html"><span>${svg('pin')}${esc(x.name)}</span></a>`).join('')}</div></div>
       </aside>
     </div></section>
     ${reviewsSection()}
@@ -249,30 +249,30 @@
 
   /* ---------------- page: SERVICES INDEX / AREAS / REVIEWS / GALLERY / ABOUT / CONTACT ---------------- */
   function servicesIndexHTML() {
-    return `<section class="page-hero"><div class="wrap"><div class="crumbs"><a href="/">Home</a>${arrowSvg}<span>Services</span></div>
+    return `<section class="page-hero"><div class="wrap"><div class="crumbs"><a href="index.html">Home</a>${arrowSvg}<span>Services</span></div>
       <h1>Our electrical services</h1><p class="lede">Domestic, commercial and landlord work across ${esc(S.area)}, all completed to the 18th Edition and fully certified.</p></div></section>
-      <section class="sec wrap"><div class="tiles">${(S.services||[]).map(s=>`<a class="tile" href="/${s.slug}.html"><div class="ico">${svg(s.icon)}</div><h3>${esc(s.name)}</h3><p>${esc(s.lede)}</p><span class="link">Learn more ${arrowSvg}</span></a>`).join('')}</div></section>${ctaBand()}`;
+      <section class="sec wrap"><div class="tiles">${(S.services||[]).map(s=>`<a class="tile" href="${s.slug}.html"><div class="ico">${svg(s.icon)}</div><h3>${esc(s.name)}</h3><p>${esc(s.lede)}</p><span class="link">Learn more ${arrowSvg}</span></a>`).join('')}</div></section>${ctaBand()}`;
   }
   function areasHTML() {
-    return `<section class="page-hero"><div class="wrap"><div class="crumbs"><a href="/">Home</a>${arrowSvg}<span>Areas</span></div>
+    return `<section class="page-hero"><div class="wrap"><div class="crumbs"><a href="index.html">Home</a>${arrowSvg}<span>Areas</span></div>
       <h1>Areas we cover</h1><p class="lede">Fast, local response across ${esc(S.area)}. If your town isn't listed, give us a call, we probably cover you.</p></div></section>
       <section class="sec wrap"><div class="area-grid"><div>
-        <div class="tiles" style="grid-template-columns:repeat(2,1fr)">${(S.locations||[]).map(l=>`<a class="tile" href="/electrician-in-${l.slug}.html"><div class="ico">${svg('pin')}</div><h3>${esc(l.name)}</h3><p>Local electrician in ${esc(l.name)}</p></a>`).join('')}</div>
+        <div class="tiles" style="grid-template-columns:repeat(2,1fr)">${(S.locations||[]).map(l=>`<a class="tile" href="electrician-in-${l.slug}.html"><div class="ico">${svg('pin')}</div><h3>${esc(l.name)}</h3><p>Local electrician in ${esc(l.name)}</p></a>`).join('')}</div>
       </div><div class="mapbox reveal">${mapEl()}</div></div></section>${ctaBand()}`;
   }
   function reviewsPageHTML() {
-    return `<section class="page-hero"><div class="wrap"><div class="crumbs"><a href="/">Home</a>${arrowSvg}<span>Reviews</span></div>
+    return `<section class="page-hero"><div class="wrap"><div class="crumbs"><a href="index.html">Home</a>${arrowSvg}<span>Reviews</span></div>
       <h1>What our customers say</h1><p class="lede">Rated ${esc(S.rating)} out of 5 by ${esc(S.reviewCount)}+ local homes and businesses.</p></div></section>${reviewsSection(true)}${ctaBand()}`;
   }
   function galleryHTML() {
     const imgs = (S.images && S.images.gallery) || [];
     const cells = imgs.length ? imgs : new Array(6).fill("");
-    return `<section class="page-hero"><div class="wrap"><div class="crumbs"><a href="/">Home</a>${arrowSvg}<span>Our work</span></div>
+    return `<section class="page-hero"><div class="wrap"><div class="crumbs"><a href="index.html">Home</a>${arrowSvg}<span>Our work</span></div>
       <h1>Recent work</h1><p class="lede">A selection of recent jobs across ${esc(S.area)}. On your live site this is a gallery of your own photos.</p></div></section>
       <section class="sec wrap"><div class="gallery">${cells.map((im,i)=>`<div class="photo">${photoSlot(im,'Job photo '+(i+1),'camera')}</div>`).join('')}</div></section>${ctaBand()}`;
   }
   function aboutHTML() {
-    return `<section class="page-hero"><div class="wrap"><div class="crumbs"><a href="/">Home</a>${arrowSvg}<span>Why us</span></div>
+    return `<section class="page-hero"><div class="wrap"><div class="crumbs"><a href="index.html">Home</a>${arrowSvg}<span>Why us</span></div>
       <h1>About ${esc(S.name)}</h1><p class="lede">A small, local, fully certified team you can actually rely on.</p></div></section>
       <section class="sec wrap"><div class="why-grid"><div class="photo reveal" style="aspect-ratio:4/5">${photoSlot(S.images&&S.images.about,'Your team / van photo','camera')}</div>
         <div class="prose reveal"><p class="lead">We've been keeping homes and businesses across ${esc(S.area)} safe and powered since ${S.yearsEstablished||''}. We're not a call centre or a national chain, just a local team who take pride in doing the job properly.</p>
@@ -281,7 +281,7 @@
       <section class="statsband"><div class="wrap stats reveal">${(S.stats||[]).map(st=>`<div class="stat"><div class="n" data-n="${st.n}" data-dec="${st.decimals||0}" data-pre="${st.prefix||''}" data-suf="${st.suffix||''}">${st.prefix||''}0${st.suffix||''}</div><div class="l">${esc(st.label)}</div></div>`).join('')}</div></section>${ctaBand()}`;
   }
   function contactHTML() {
-    return `<section class="page-hero"><div class="wrap"><div class="crumbs"><a href="/">Home</a>${arrowSvg}<span>Contact</span></div>
+    return `<section class="page-hero"><div class="wrap"><div class="crumbs"><a href="index.html">Home</a>${arrowSvg}<span>Contact</span></div>
       <h1>Get in touch</h1><p class="lede">Emergency or planned, tell us the problem and a qualified electrician will call you straight back.</p></div></section>
       <section class="sec wrap"><div class="cta-inner">
         <div class="cta-copy reveal"><span class="eyebrow">Contact us</span><h2 style="font-size:clamp(26px,3.4vw,36px);margin-top:14px">We'll call you back, usually within the hour</h2>
